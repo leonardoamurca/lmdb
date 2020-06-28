@@ -1,0 +1,15 @@
+object Versions {
+    const val kotlin = "1.3.72"
+    const val app_compat = "1.1.0"
+    const val androidx_core_ktx = "1.2.0"
+    const val constraint_layout = "1.1.3"
+    const val junit = "4.13"
+    const val androidx_test_ext_junit = "1.1.1"
+    const val espresso_core = "3.2.0"
+    const val coroutines = "1.3.7"
+    const val room = "2.2.5"
+    const val koin = "2.1.6"
+    const val multidex = "1.0.3"
+    const val lifecycle = "2.2.0"
+    const val android_gradle_plugin = "3.6.3"
+}

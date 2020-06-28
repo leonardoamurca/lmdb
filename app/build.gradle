@@ -3,22 +3,21 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
-
 android {
-    compileSdkVersion 28
-    buildToolsVersion "29.0.3"
+    compileSdkVersion Config.compileSdk
+    buildToolsVersion Config.buildTools
 
     dataBinding {
         enabled = true
     }
 
     defaultConfig {
-        applicationId "com.leonardoamurca.lmdb"
-        minSdkVersion 24
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        // Enabling multidex support.
+        applicationId Config.applicationId
+        minSdkVersion Config.minSdk
+        targetSdkVersion Config.targetSdk
+        versionCode Config.versionCode
+        versionName Config.versionName
+
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -39,40 +38,30 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation Deps.kotlin_std_lib_java7
+    implementation Deps.app_compat
+    implementation Deps.core_ktx
+    implementation Deps.constraint_layout
+    implementation Deps.room_runtime
+    implementation Deps.kotlin_coroutines_core
+    implementation Deps.kotlin_coroutines_android
+    implementation Deps.koin_scope
+    implementation Deps.koin_viewmodel
+    implementation Deps.koin_android_ext
+    implementation Deps.koin_core
+    implementation Deps.lifecycle_view_model_extensions
+    implementation Deps.lifecycle_live_data
+    implementation Deps.lifecycle_runtime
+    implementation Deps.lifecycle_view_model_savedstate
+    implementation Deps.multidex
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7'
+    androidTestImplementation Deps.androidx_test_ext_junit
+    androidTestImplementation Deps.espresso_core
 
-    def room_version = "2.2.5"
-    def koin_version = '2.1.6'
-    def lifecycle_version = "2.2.0"
+    testImplementation Deps.junit
+    testImplementation Deps.koin_test
 
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-    implementation "org.koin:koin-androidx-ext:$koin_version"
-    implementation "org.koin:koin-core:$koin_version"
-    testImplementation "org.koin:koin-test:$koin_version"
-    implementation 'com.android.support:multidex:1.0.0'
-
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    // LiveData
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    // Lifecycles only (without ViewModel or LiveData)
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    // Saved state module for ViewModel
-    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
-
-    // Annotation processor
-    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+    kapt Deps.room_compiler
+    kapt Deps.lifecycle_compiler
 
 }
