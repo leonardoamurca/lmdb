@@ -12,4 +12,5 @@ object Versions {
     const val multidex = "1.0.3"
     const val lifecycle = "2.2.0"
     const val android_gradle_plugin = "3.6.3"
+    const val glide = "4.11.0"
 }

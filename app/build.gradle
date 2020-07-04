@@ -11,6 +11,15 @@ android {
         enabled = true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
     defaultConfig {
         applicationId Config.applicationId
         minSdkVersion Config.minSdk
@@ -54,6 +63,7 @@ dependencies {
     implementation Deps.lifecycle_runtime
     implementation Deps.lifecycle_view_model_savedstate
     implementation Deps.multidex
+    implementation Deps.glide
 
     androidTestImplementation Deps.androidx_test_ext_junit
     androidTestImplementation Deps.espresso_core
@@ -63,5 +73,6 @@ dependencies {
 
     kapt Deps.room_compiler
     kapt Deps.lifecycle_compiler
+    kapt Deps.glide_compiler
 
 }
