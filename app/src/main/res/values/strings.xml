@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LMDB</string>
+    <string name="overview_label">Sinopse</string>
+    <string name="vote_average_label">Avaliação Média</string>
 </resources>
