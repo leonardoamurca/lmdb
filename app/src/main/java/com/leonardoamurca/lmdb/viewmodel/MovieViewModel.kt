@@ -26,8 +26,13 @@ class MovieViewModel(
     private val _posterImage = MutableLiveData<String>("")
     val posterImage: LiveData<String> = _posterImage
 
+    private val _showLoading = MutableLiveData<Boolean>(false)
+    val showLoading: LiveData<Boolean> get() = _showLoading
+
     suspend fun init(movieId: Int) {
+        _showLoading.postValue(true)
         val movie = movieApi.getMovieDetails(movieId)
+        _showLoading.postValue(false)
         movie.let {
             _title.value = it.title
             _overview.value = it.overview

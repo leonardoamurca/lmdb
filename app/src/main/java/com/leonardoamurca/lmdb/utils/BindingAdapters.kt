@@ -1,5 +1,6 @@
 package com.leonardoamurca.lmdb.utils
 
+import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -19,3 +20,7 @@ fun bindImage(imgView: ImageView, path: String?) {
             .into(imgView)
     }
 }
+
+@BindingAdapter("present")
+fun View.setPresent(status: Boolean) =
+    if (status) this.visibility = View.VISIBLE else this.visibility = View.GONE
