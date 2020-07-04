@@ -38,9 +38,9 @@ abstract class AppDatabase : RoomDatabase() {
                             MovieEntity(
                                 1,
                                 "Midsommar",
-                                "A horror film",
+                                "Several friends travel to Sweden to study as anthropologists a summer festival that is held every ninety years in the remote hometown of one of them. What begins as a dream vacation in a place where the sun never sets, gradually turns into a dark nightmare as the mysterious inhabitants invite them to participate in their disturbing festive activities.",
                                 7.1F,
-                                "imagelink.jpg"
+                                "https://image.tmdb.org/t/p/w500/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg"
                             )
                         )
                 }

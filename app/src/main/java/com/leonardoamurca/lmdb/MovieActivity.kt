@@ -26,7 +26,7 @@ class MovieActivity : AppCompatActivity() {
         }
 
         viewModel.viewModelScope.launch {
-            viewModel.init()
+            viewModel.init(1)
         }
     }
 }
