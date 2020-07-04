@@ -13,5 +13,6 @@ object Versions {
     const val lifecycle = "2.2.0"
     const val android_gradle_plugin = "3.6.3"
     const val glide = "4.11.0"
-    const val retrofit = "1.6.0"
+    const val retrofit = "2.9.0"
+    const val moshi = "1.9.3"
 }

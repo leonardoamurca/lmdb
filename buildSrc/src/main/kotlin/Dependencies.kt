@@ -31,9 +31,14 @@ object Deps {
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofit_moshi_converter =
+        "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+    const val moshi_kotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
+    const val moshi_kotlin_codegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
 }
 
 object PluginDeps {
-    const val tools_build_gradle = "com.android.tools.build:gradle:${Versions.android_gradle_plugin}"
+    const val tools_build_gradle =
+        "com.android.tools.build:gradle:${Versions.android_gradle_plugin}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
 }

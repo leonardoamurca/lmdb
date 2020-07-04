@@ -4,6 +4,10 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    def localPropertiesFile = rootProject.file("local.properties")
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(localPropertiesFile))
+
     compileSdkVersion Config.compileSdk
     buildToolsVersion Config.buildTools
 
@@ -26,6 +30,10 @@ android {
         targetSdkVersion Config.targetSdk
         versionCode Config.versionCode
         versionName Config.versionName
+
+        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "ASSETS_BASE_URL", "\"https://image.tmdb.org/t/p/w500\""
+        buildConfigField "String", "API_KEY", localProperties["api_key"]
 
         multiDexEnabled true
 
@@ -65,6 +73,8 @@ dependencies {
     implementation Deps.multidex
     implementation Deps.glide
     implementation Deps.retrofit
+    implementation Deps.retrofit_moshi_converter
+    implementation Deps.moshi_kotlin
 
     androidTestImplementation Deps.androidx_test_ext_junit
     androidTestImplementation Deps.espresso_core
@@ -75,5 +85,6 @@ dependencies {
     kapt Deps.room_compiler
     kapt Deps.lifecycle_compiler
     kapt Deps.glide_compiler
+    kapt Deps.moshi_kotlin_codegen
 
 }
