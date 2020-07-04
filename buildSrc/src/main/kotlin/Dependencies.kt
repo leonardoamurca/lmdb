@@ -30,6 +30,7 @@ object Deps {
     const val lifecycle_compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
 }
 
 object PluginDeps {

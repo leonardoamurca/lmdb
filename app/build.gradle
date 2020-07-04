@@ -64,6 +64,7 @@ dependencies {
     implementation Deps.lifecycle_view_model_savedstate
     implementation Deps.multidex
     implementation Deps.glide
+    implementation Deps.retrofit
 
     androidTestImplementation Deps.androidx_test_ext_junit
     androidTestImplementation Deps.espresso_core
