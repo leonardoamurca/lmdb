@@ -16,7 +16,7 @@ data class MovieEntity(
     @ColumnInfo(name = FIELD_VOTE_AVERAGE)
     val voteAverage: Float,
     @ColumnInfo(name = FIELD_POSTER_IMAGE)
-    val posterImage: String
+    val posterPath: String
 ) {
 
     companion object {
@@ -25,6 +25,6 @@ data class MovieEntity(
         private const val FIELD_TITLE = "title"
         private const val FIELD_VOTE_AVERAGE = "vote_average"
         private const val FIELD_OVERVIEW = "overview"
-        private const val FIELD_POSTER_IMAGE = "poster_image"
+        private const val FIELD_POSTER_IMAGE = "poster_path"
     }
 }
