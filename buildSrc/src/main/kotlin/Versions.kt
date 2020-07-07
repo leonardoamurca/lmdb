@@ -15,4 +15,5 @@ object Versions {
     const val glide = "4.11.0"
     const val retrofit = "2.9.0"
     const val moshi = "1.9.3"
+    const val card_view = "1.0.0"
 }

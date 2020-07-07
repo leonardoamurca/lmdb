@@ -36,7 +36,7 @@ object Deps {
     const val moshi_kotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
     const val moshi_kotlin_codegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
     const val recycler_view = "androidx.recyclerview:recyclerview:${Versions.app_compat}"
-    const val card_view = "androidx.cardview:cardview:${Versions.app_compat}"
+    const val card_view = "androidx.cardview:cardview:${Versions.card_view}"
 }
 
 object PluginDeps {
