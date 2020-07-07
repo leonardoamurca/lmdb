@@ -75,6 +75,8 @@ dependencies {
     implementation Deps.retrofit
     implementation Deps.retrofit_moshi_converter
     implementation Deps.moshi_kotlin
+    implementation Deps.recycler_view
+    implementation Deps.card_view
 
     androidTestImplementation Deps.androidx_test_ext_junit
     androidTestImplementation Deps.espresso_core

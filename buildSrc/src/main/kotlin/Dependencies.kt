@@ -35,6 +35,8 @@ object Deps {
         "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     const val moshi_kotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
     const val moshi_kotlin_codegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
+    const val recycler_view = "androidx.recyclerview:recyclerview:${Versions.app_compat}"
+    const val card_view = "androidx.cardview:cardview:${Versions.app_compat}"
 }
 
 object PluginDeps {
