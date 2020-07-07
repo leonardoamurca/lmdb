@@ -25,8 +25,14 @@ class MovieActivity : AppCompatActivity() {
             lifecycleOwner = this@MovieActivity
         }
 
+        val movieId = intent.getIntExtra(MOVIE_KEY, 0)
+
         viewModel.viewModelScope.launch {
-            viewModel.init(565743)
+            viewModel.init(movieId)
         }
+    }
+
+    companion object {
+        private const val MOVIE_KEY = "MOVIE"
     }
 }
