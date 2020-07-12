@@ -4,40 +4,19 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.bumptech.glide.Glide
-import com.leonardoamurca.lmdb.db.MovieRepository
-import com.leonardoamurca.lmdb.network.MovieApi
+import com.leonardoamurca.lmdb.network.Movie
 
 class MovieViewModel(
-    app: Application,
-    private val movieApi: MovieApi
+    app: Application
 ) : AndroidViewModel(app) {
 
-    private val _title = MutableLiveData<String>("")
-    val title: LiveData<String> = _title
-
-    private val _overview = MutableLiveData<String>("")
-    val overview: LiveData<String> = _overview
-
-    private val _voteAverage = MutableLiveData<Float>(0F)
-    val voteAverage: LiveData<Float> = _voteAverage
-
-    private val _posterImage = MutableLiveData<String>("")
-    val posterImage: LiveData<String> = _posterImage
+    private val _movie = MutableLiveData<Movie>()
+    val movie: LiveData<Movie> = _movie
 
     private val _showLoading = MutableLiveData<Boolean>(false)
     val showLoading: LiveData<Boolean> get() = _showLoading
 
-    suspend fun init(movieId: Int) {
-        _showLoading.postValue(true)
-        val movie = movieApi.getMovieDetails(movieId)
-        _showLoading.postValue(false)
-        movie.let {
-            _title.value = it.title
-            _overview.value = it.overview
-            _voteAverage.value = it.voteAverage
-            _posterImage.value = it.posterPath
-        }
+    fun init(movie: Movie) {
+        _movie.value = movie
     }
 }

@@ -3,10 +3,9 @@ package com.leonardoamurca.lmdb
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.viewModelScope
 import com.leonardoamurca.lmdb.databinding.ActivityMovieBinding
+import com.leonardoamurca.lmdb.network.Movie
 import com.leonardoamurca.lmdb.viewmodel.MovieViewModel
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class MovieActivity : AppCompatActivity() {
@@ -25,11 +24,9 @@ class MovieActivity : AppCompatActivity() {
             lifecycleOwner = this@MovieActivity
         }
 
-        val movieId = intent.getIntExtra(MOVIE_KEY, 0)
+        val movie = intent.getParcelableExtra<Movie>(MOVIE_KEY)
 
-        viewModel.viewModelScope.launch {
-            viewModel.init(movieId)
-        }
+        viewModel.init(movie)
     }
 
     companion object {
