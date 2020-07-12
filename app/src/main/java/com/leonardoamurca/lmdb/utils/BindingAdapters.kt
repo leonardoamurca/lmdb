@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.leonardoamurca.lmdb.BuildConfig
@@ -24,3 +25,11 @@ fun bindImage(imgView: ImageView, path: String?) {
 @BindingAdapter("present")
 fun View.setPresent(status: Boolean) =
     if (status) this.visibility = View.VISIBLE else this.visibility = View.GONE
+
+@BindingAdapter(value = ["adapter"])
+fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
+    this.run {
+        this.setHasFixedSize(true)
+        this.adapter = adapter
+    }
+}
