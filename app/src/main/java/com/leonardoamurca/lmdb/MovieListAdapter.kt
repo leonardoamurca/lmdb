@@ -1,57 +1,58 @@
 package com.leonardoamurca.lmdb
 
 import android.content.Intent
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.leonardoamurca.lmdb.network.MovieResponse
-import com.leonardoamurca.lmdb.utils.bindImage
-import com.leonardoamurca.lmdb.utils.inflate
-import kotlinx.android.synthetic.main.movie_item.view.*
+import com.leonardoamurca.lmdb.databinding.MovieItemBinding
+import com.leonardoamurca.lmdb.network.Movie
 
-class MovieListAdapter(private val movies: List<MovieResponse>) :
-    RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
+class MovieListAdapter :
+    ListAdapter<Movie, MovieListAdapter.ViewHolder>(Companion) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = parent.inflate(R.layout.movie_item, false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = movies[position]
-        holder.bind(movie)
-    }
-
-    override fun getItemCount() = movies.size
-
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-
-        private var movie: MovieResponse? = null
+    class ViewHolder(val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root),
+        View.OnClickListener {
 
         init {
-            itemView.setOnClickListener(this)
-        }
-
-        fun bind(movie: MovieResponse) {
-            this.movie = movie
-
-            itemView.titleItem.text = movie.title
-            bindImage(itemView.posterImageItem, movie.posterPath)
+            binding.root.setOnClickListener(this)
         }
 
         override fun onClick(v: View?) {
-            val context = itemView.context
+            val context = binding.root.context
             val showMovieDetailsIntent = Intent(context, MovieActivity::class.java)
 
-            showMovieDetailsIntent.putExtra(MOVIE_KEY, movie?.id)
+            showMovieDetailsIntent.putExtra(MOVIE_KEY, binding.movie)
             context.startActivity(showMovieDetailsIntent)
-        }
-
-        companion object {
-            private const val MOVIE_KEY = "MOVIE"
         }
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = MovieItemBinding.inflate(layoutInflater)
+
+        return ViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val movie = getItem(position)
+
+        holder.binding.movie = movie
+        holder.binding.executePendingBindings()
+    }
+
+    companion object : DiffUtil.ItemCallback<Movie>() {
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        private const val MOVIE_KEY = "MOVIE"
+    }
 }
 

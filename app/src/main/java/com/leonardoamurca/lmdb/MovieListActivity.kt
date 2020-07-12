@@ -2,38 +2,41 @@ package com.leonardoamurca.lmdb
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.leonardoamurca.lmdb.network.MovieResponse
-import kotlinx.android.synthetic.main.activity_movie_list.*
+import com.leonardoamurca.lmdb.databinding.ActivityMovieListBinding
+import com.leonardoamurca.lmdb.viewmodel.MovieListViewModel
+import org.koin.android.ext.android.inject
 
 class MovieListActivity : AppCompatActivity() {
 
+    private lateinit var databinding: ActivityMovieListBinding
+
+    private val viewModel: MovieListViewModel by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_list)
 
-        movieListRecyclerView.apply {
-            adapter = MovieListAdapter(movies())
-            layoutManager =
-                LinearLayoutManager(
-                    this@MovieListActivity,
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
+        databinding = DataBindingUtil.setContentView<ActivityMovieListBinding>(
+            this,
+            R.layout.activity_movie_list
+        ).apply {
+            viewmodel = this@MovieListActivity.viewModel
+            lifecycleOwner = this@MovieListActivity
         }
-    }
 
-    private fun movies(): List<MovieResponse> {
-        return listOf(
-            MovieResponse(530385, "Midsommar", "a", "/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg", 7.1F),
-            MovieResponse(
-                570670,
-                "The Invisible Man",
-                "a",
-                "/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg",
-                8.1F
-            ),
-            MovieResponse(475557, "Joker", "a", "/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg", 10.1F)
+        val adapter = MovieListAdapter()
+
+        databinding.adapter = adapter
+        databinding.movieListRecyclerView.layoutManager = LinearLayoutManager(
+            this@MovieListActivity,
+            LinearLayoutManager.VERTICAL,
+            false
         )
+
+        viewModel.movies.observe(this, Observer {
+            it.let(adapter::submitList)
+        })
     }
 }
