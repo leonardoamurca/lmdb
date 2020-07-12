@@ -8,6 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.leonardoamurca.lmdb.network.Movie
 import com.leonardoamurca.lmdb.network.MovieApi
 import com.leonardoamurca.lmdb.network.NetworkState
+import com.leonardoamurca.lmdb.utils.HttpStatus.FORBIDDEN
+import com.leonardoamurca.lmdb.utils.HttpStatus.NOT_FOUND
+import com.leonardoamurca.lmdb.utils.HttpStatus.INTERNAL_SERVER_ERROR
+import com.leonardoamurca.lmdb.utils.HttpStatus.BAD_GATEWAY
+import com.leonardoamurca.lmdb.utils.HttpStatus.FOUND
+import com.leonardoamurca.lmdb.utils.HttpStatus.MOVED_PERMANENTLY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -40,12 +46,14 @@ class MovieListViewModel(
                 response.isSuccessful -> NetworkState.Success(response.body()?.results!!)
                 else -> {
                     when (response.code()) {
-                        403 -> NetworkState.HttpErrors.ResourceForbidden(response.message())
-                        404 -> NetworkState.HttpErrors.ResourceNotFound(response.message())
-                        500 -> NetworkState.HttpErrors.InternalServerError(response.message())
-                        502 -> NetworkState.HttpErrors.BadGateWay(response.message())
-                        301 -> NetworkState.HttpErrors.ResourceRemoved(response.message())
-                        302 -> NetworkState.HttpErrors.RemovedResourceFound(response.message())
+                        FORBIDDEN.code -> NetworkState.HttpErrors.ResourceForbidden(response.message())
+                        NOT_FOUND.code -> NetworkState.HttpErrors.ResourceNotFound(response.message())
+                        INTERNAL_SERVER_ERROR.code -> NetworkState.HttpErrors.InternalServerError(
+                            response.message()
+                        )
+                        BAD_GATEWAY.code -> NetworkState.HttpErrors.BadGateWay(response.message())
+                        MOVED_PERMANENTLY.code -> NetworkState.HttpErrors.ResourceRemoved(response.message())
+                        FOUND.code -> NetworkState.HttpErrors.RemovedResourceFound(response.message())
                         else -> NetworkState.Error(response.message())
                     }
                 }
