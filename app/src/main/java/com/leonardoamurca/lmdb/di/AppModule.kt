@@ -6,6 +6,7 @@ import com.leonardoamurca.lmdb.db.MovieRepository
 import com.leonardoamurca.lmdb.db.MovieRepositoryImpl
 import com.leonardoamurca.lmdb.network.AuthInterceptor
 import com.leonardoamurca.lmdb.network.MovieApi
+import com.leonardoamurca.lmdb.viewmodel.MovieListViewModel
 import com.leonardoamurca.lmdb.viewmodel.MovieViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
@@ -28,5 +29,6 @@ val appModule = module {
             .build()
     }
     single { get<Retrofit>().create(MovieApi::class.java) }
-    viewModel { MovieViewModel(get(), get()) }
+    viewModel { MovieViewModel(get()) }
+    viewModel { MovieListViewModel(get(), get()) }
 }
