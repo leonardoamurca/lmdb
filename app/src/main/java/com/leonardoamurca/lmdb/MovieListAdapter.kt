@@ -4,14 +4,14 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.leonardoamurca.lmdb.databinding.MovieItemBinding
 import com.leonardoamurca.lmdb.network.Movie
 
 class MovieListAdapter :
-    ListAdapter<Movie, MovieListAdapter.ViewHolder>(Companion) {
+    PagedListAdapter<Movie, MovieListAdapter.ViewHolder>(Companion) {
 
     class ViewHolder(val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root),
         View.OnClickListener {

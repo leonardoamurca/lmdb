@@ -15,6 +15,8 @@ class MovieListActivity : AppCompatActivity() {
 
     private val viewModel: MovieListViewModel by inject()
 
+    private val movieListAdapter = MovieListAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,17 +28,22 @@ class MovieListActivity : AppCompatActivity() {
             lifecycleOwner = this@MovieListActivity
         }
 
-        val adapter = MovieListAdapter()
+        initializeList()
+        setupObservers()
+    }
 
-        databinding.adapter = adapter
+    private fun setupObservers() {
+        viewModel.movies.observe(this, Observer {
+            it.let(movieListAdapter::submitList)
+        })
+    }
+
+    private fun initializeList() {
+        databinding.adapter = movieListAdapter
         databinding.movieListRecyclerView.layoutManager = LinearLayoutManager(
             this@MovieListActivity,
             LinearLayoutManager.VERTICAL,
             false
         )
-
-        viewModel.movies.observe(this, Observer {
-            it.let(adapter::submitList)
-        })
     }
 }
