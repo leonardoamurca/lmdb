@@ -65,5 +65,4 @@ class MovieListViewModel(
             _showLoading.postValue(false)
         }
     }
-
 }

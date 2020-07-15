@@ -37,6 +37,8 @@ object Deps {
     const val moshi_kotlin_codegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
     const val recycler_view = "androidx.recyclerview:recyclerview:${Versions.app_compat}"
     const val card_view = "androidx.cardview:cardview:${Versions.card_view}"
+    const val paging = "androidx.paging:paging-runtime:${Versions.paging}"
+    const val paging_test = "androidx.paging:paging-common:${Versions.paging}"
 }
 
 object PluginDeps {

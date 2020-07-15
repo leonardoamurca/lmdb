@@ -10,7 +10,7 @@ interface MovieApi {
     @GET("movie/{id}")
     suspend fun getMovieDetails(@Path("id") movieId: Int): Response<Movie>
 
-    @GET("trending/movie/day")
+    @GET("trending/movie/{period}")
     suspend fun getTrendingMoviesOf(
         @Path("period") period: String,
         @Query("page") pageNumber: Int

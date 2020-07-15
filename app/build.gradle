@@ -77,12 +77,14 @@ dependencies {
     implementation Deps.moshi_kotlin
     implementation Deps.recycler_view
     implementation Deps.card_view
+    implementation Deps.paging
 
     androidTestImplementation Deps.androidx_test_ext_junit
     androidTestImplementation Deps.espresso_core
 
     testImplementation Deps.junit
     testImplementation Deps.koin_test
+    testImplementation Deps.paging_test
 
     kapt Deps.room_compiler
     kapt Deps.lifecycle_compiler
