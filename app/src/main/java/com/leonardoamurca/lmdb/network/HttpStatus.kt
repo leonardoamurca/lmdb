@@ -1,4 +1,4 @@
-package com.leonardoamurca.lmdb.utils
+package com.leonardoamurca.lmdb.network
 
 enum class HttpStatus(val code: Int) {
     MOVED_PERMANENTLY(301),

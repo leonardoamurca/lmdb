@@ -1,5 +1,7 @@
-package com.leonardoamurca.lmdb.network
+package com.leonardoamurca.lmdb.network.api
 
+import com.leonardoamurca.lmdb.model.Movie
+import com.leonardoamurca.lmdb.model.NetworkListResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -9,17 +9,17 @@
 
         <variable
             name="adapter"
-            type="com.leonardoamurca.lmdb.MovieListAdapter" />
+            type="com.leonardoamurca.lmdb.ui.trending.TrendingMoviesAdapter" />
 
         <variable
             name="viewmodel"
-            type="com.leonardoamurca.lmdb.viewmodel.MovieListViewModel" />
+            type="com.leonardoamurca.lmdb.ui.trending.TrendingMoviesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.leonardoamurca.lmdb.MovieListActivity">
+        tools:context="com.leonardoamurca.lmdb.ui.trending.TrendingMoviesActivity">
 
         <ProgressBar
             android:id="@+id/loading"

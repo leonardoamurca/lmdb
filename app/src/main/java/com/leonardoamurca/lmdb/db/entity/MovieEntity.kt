@@ -1,4 +1,4 @@
-package com.leonardoamurca.lmdb.db
+package com.leonardoamurca.lmdb.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

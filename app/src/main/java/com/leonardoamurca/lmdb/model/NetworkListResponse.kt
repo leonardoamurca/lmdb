@@ -1,5 +1,6 @@
-package com.leonardoamurca.lmdb.network
+package com.leonardoamurca.lmdb.model
 
+import com.leonardoamurca.lmdb.model.Movie
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

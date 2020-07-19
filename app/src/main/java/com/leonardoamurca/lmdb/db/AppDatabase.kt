@@ -5,6 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.leonardoamurca.lmdb.db.dao.MovieDao
+import com.leonardoamurca.lmdb.db.entity.MovieEntity
 import com.leonardoamurca.lmdb.utils.ioThread
 
 

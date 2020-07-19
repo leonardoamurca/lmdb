@@ -1,11 +1,11 @@
-package com.leonardoamurca.lmdb
+package com.leonardoamurca.lmdb.ui.movie
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.leonardoamurca.lmdb.R
 import com.leonardoamurca.lmdb.databinding.ActivityMovieBinding
-import com.leonardoamurca.lmdb.network.Movie
-import com.leonardoamurca.lmdb.viewmodel.MovieViewModel
+import com.leonardoamurca.lmdb.model.Movie
 import org.koin.android.ext.android.inject
 
 class MovieActivity : AppCompatActivity() {

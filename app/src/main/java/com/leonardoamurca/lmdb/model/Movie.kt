@@ -1,4 +1,4 @@
-package com.leonardoamurca.lmdb.network
+package com.leonardoamurca.lmdb.model
 
 import android.os.Parcelable
 import com.squareup.moshi.Json

@@ -1,10 +1,10 @@
-package com.leonardoamurca.lmdb.viewmodel
+package com.leonardoamurca.lmdb.ui.movie
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.leonardoamurca.lmdb.network.Movie
+import com.leonardoamurca.lmdb.model.Movie
 
 class MovieViewModel(
     app: Application
@@ -12,9 +12,6 @@ class MovieViewModel(
 
     private val _movie = MutableLiveData<Movie>()
     val movie: LiveData<Movie> = _movie
-
-    private val _showLoading = MutableLiveData<Boolean>(false)
-    val showLoading: LiveData<Boolean> get() = _showLoading
 
     fun init(movie: Movie) {
         _movie.value = movie

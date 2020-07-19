@@ -2,7 +2,6 @@ package com.leonardoamurca.lmdb.utils
 
 import java.util.concurrent.Executors
 
-
 private val IO_EXECUTOR = Executors.newSingleThreadExecutor()
 
 fun ioThread(f: () -> Unit) {

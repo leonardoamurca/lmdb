@@ -8,13 +8,13 @@
 
         <variable
             name="viewmodel"
-            type="com.leonardoamurca.lmdb.viewmodel.MovieViewModel" />
+            type="com.leonardoamurca.lmdb.ui.movie.MovieViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MovieActivity">
+        tools:context=".ui.movie.MovieActivity">
 
         <ImageView
             android:id="@+id/posterImage"
@@ -25,7 +25,6 @@
             app:layout_constraintEnd_toStartOf="@id/title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:present="@{!viewmodel.showLoading}"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -33,15 +32,14 @@
             android:layout_width="220dp"
             android:layout_height="190dp"
             android:gravity="center_vertical"
-            android:text="@{viewmodel.movie.title}"
-            android:textSize="25sp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
+            android:text="@{viewmodel.movie.title}"
+            android:textSize="25sp"
             app:layout_constraintBottom_toTopOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/posterImage"
             app:layout_constraintTop_toTopOf="parent"
-            app:present="@{!viewmodel.showLoading}"
             tools:text="Midsommar" />
 
         <TextView
@@ -56,8 +54,7 @@
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline"
-            app:layout_constraintVertical_bias="0.075"
-            app:present="@{!viewmodel.showLoading}" />
+            app:layout_constraintVertical_bias="0.075" />
 
         <TextView
             android:id="@+id/voteAverage"
@@ -70,7 +67,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/voteAverageLabel"
-            app:present="@{!viewmodel.showLoading}"
             tools:text="7.1" />
 
         <TextView
@@ -84,8 +80,7 @@
             app:layout_constraintBottom_toTopOf="@id/overview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/voteAverage"
-            app:present="@{!viewmodel.showLoading}" />
+            app:layout_constraintTop_toBottomOf="@id/voteAverage" />
 
 
         <TextView
@@ -98,18 +93,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/overviewLabel"
-            app:present="@{!viewmodel.showLoading}"
             tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. " />
-
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:present="@{viewmodel.showLoading}" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"

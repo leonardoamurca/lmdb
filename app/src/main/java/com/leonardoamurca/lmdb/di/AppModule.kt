@@ -2,12 +2,12 @@ package com.leonardoamurca.lmdb.di
 
 import com.leonardoamurca.lmdb.BuildConfig
 import com.leonardoamurca.lmdb.db.AppDatabase
-import com.leonardoamurca.lmdb.db.MovieRepository
-import com.leonardoamurca.lmdb.db.MovieRepositoryImpl
+import com.leonardoamurca.lmdb.db.repository.MovieRepository
+import com.leonardoamurca.lmdb.db.repository.MovieRepositoryImpl
 import com.leonardoamurca.lmdb.network.AuthInterceptor
-import com.leonardoamurca.lmdb.network.MovieApi
-import com.leonardoamurca.lmdb.viewmodel.MovieListViewModel
-import com.leonardoamurca.lmdb.viewmodel.MovieViewModel
+import com.leonardoamurca.lmdb.network.api.MovieApi
+import com.leonardoamurca.lmdb.ui.trending.TrendingMoviesViewModel
+import com.leonardoamurca.lmdb.ui.movie.MovieViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -18,7 +18,11 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 val appModule = module {
     single { AppDatabase.buildDatabase(androidContext()) }
     single { get<AppDatabase>().movieDao() }
-    single<MovieRepository> { MovieRepositoryImpl(get()) }
+    single<MovieRepository> {
+        MovieRepositoryImpl(
+            get()
+        )
+    }
     single { AuthInterceptor() }
     single { OkHttpClient().newBuilder().addInterceptor(get<AuthInterceptor>()).build() }
     single {
@@ -30,5 +34,10 @@ val appModule = module {
     }
     single { get<Retrofit>().create(MovieApi::class.java) }
     viewModel { MovieViewModel(get()) }
-    viewModel { MovieListViewModel(get(), get()) }
+    viewModel {
+        TrendingMoviesViewModel(
+            get(),
+            get()
+        )
+    }
 }
