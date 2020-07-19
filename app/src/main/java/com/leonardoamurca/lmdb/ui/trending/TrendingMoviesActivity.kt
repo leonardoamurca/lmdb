@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.leonardoamurca.lmdb.R
 import com.leonardoamurca.lmdb.databinding.ActivityTrendingMoviesBinding
 import org.koin.android.ext.android.inject
@@ -40,10 +41,26 @@ class TrendingMoviesActivity : AppCompatActivity() {
 
     private fun initializeList() {
         databinding.adapter = movieListAdapter
-        databinding.movieListRecyclerView.layoutManager = LinearLayoutManager(
-            this@TrendingMoviesActivity,
-            LinearLayoutManager.VERTICAL,
-            false
-        )
+        databinding.movieListRecyclerView.apply {
+            layoutManager = GridLayoutManager(
+                this@TrendingMoviesActivity,
+                SPAN_COUNT,
+                GridLayoutManager.VERTICAL,
+                false
+            )
+            addItemDecoration(
+                GridSpacingItemDecoration(
+                    SPAN_COUNT,
+                    SPACING,
+                    INCLUDE_EDGE
+                )
+            )
+        }
+    }
+
+    companion object {
+        private const val SPAN_COUNT = 3
+        private const val SPACING = 30
+        private const val INCLUDE_EDGE = true
     }
 }
