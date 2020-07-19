@@ -1,26 +1,23 @@
 package com.leonardoamurca.lmdb.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import androidx.paging.DataSource
+import androidx.lifecycle.*
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.leonardoamurca.lmdb.MoviesDataSource
+import com.leonardoamurca.lmdb.MoviesDataSourceFactory
 import com.leonardoamurca.lmdb.network.Movie
 import com.leonardoamurca.lmdb.network.MovieApi
 
 class MovieListViewModel(
     app: Application,
-    private val movieApi: MovieApi
+    movieApi: MovieApi
 ) : AndroidViewModel(app) {
 
-    private val _showLoading = MutableLiveData<Boolean>(false)
-    val showLoading: LiveData<Boolean> get() = _showLoading
-
     var movies: LiveData<PagedList<Movie>>
+
+    private val moviesDataSourceFactory: MoviesDataSourceFactory =
+        MoviesDataSourceFactory(viewModelScope, movieApi)
 
     init {
         val config = PagedList.Config.Builder()
@@ -28,17 +25,11 @@ class MovieListViewModel(
             .setEnablePlaceholders(false)
             .build()
 
-        movies = initializePagedListBuilder(config).build()
-
+        movies = LivePagedListBuilder<Int, Movie>(moviesDataSourceFactory, config).build()
     }
 
-    private fun initializePagedListBuilder(config: PagedList.Config): LivePagedListBuilder<Int, Movie> {
-        val dataSourceFactory = object : DataSource.Factory<Int, Movie>() {
-            override fun create(): DataSource<Int, Movie> {
-                return MoviesDataSource(viewModelScope, movieApi)
-            }
-        }
-
-        return LivePagedListBuilder<Int, Movie>(dataSourceFactory, config)
-    }
+    fun showLoading(): LiveData<Boolean> = Transformations.switchMap(
+        moviesDataSourceFactory.dataSource,
+        MoviesDataSource::loadingState
+    )
 }

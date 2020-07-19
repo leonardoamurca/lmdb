@@ -1,5 +1,6 @@
 package com.leonardoamurca.lmdb
 
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.leonardoamurca.lmdb.network.Movie
 import com.leonardoamurca.lmdb.network.MovieApi
@@ -14,6 +15,8 @@ class MoviesDataSource(
     private val movieApi: MovieApi
 ) :
     PageKeyedDataSource<Int, Movie>() {
+
+    val loadingState = MutableLiveData<Boolean>(false)
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -44,6 +47,7 @@ class MoviesDataSource(
 
     private suspend fun fetchMovies(page: Int): NetworkState<List<Movie>> {
         return try {
+            updateLoading(true)
             val response = movieApi.getTrendingMoviesOf("day", page)
             when {
                 response.isSuccessful -> NetworkState.Success(response.body()?.results!!)
@@ -73,7 +77,13 @@ class MoviesDataSource(
             }
         } catch (error: Exception) {
             NetworkState.NetworkException(error.message!!)
+        } finally {
+            updateLoading(false)
         }
+    }
+
+    private fun updateLoading(state: Boolean) {
+        loadingState.postValue(state)
     }
 
     companion object {
