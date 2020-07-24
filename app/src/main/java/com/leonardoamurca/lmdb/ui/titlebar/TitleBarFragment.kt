@@ -1,5 +1,6 @@
 package com.leonardoamurca.lmdb.ui.titlebar
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.leonardoamurca.lmdb.R
 import com.leonardoamurca.lmdb.databinding.FragmentTitleBarBinding
+import com.leonardoamurca.lmdb.ui.home.HomeActivity
+import kotlinx.android.synthetic.main.fragment_title_bar.*
 import org.koin.android.ext.android.inject
 
 class TitleBarFragment : Fragment() {
@@ -39,6 +42,10 @@ class TitleBarFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val title = arguments?.getString(TITLE)
+        backButton.setOnClickListener {
+            val intent = Intent(this.context, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         viewModel.init(title)
     }

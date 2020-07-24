@@ -6,6 +6,7 @@ import com.leonardoamurca.lmdb.db.repository.MovieRepository
 import com.leonardoamurca.lmdb.db.repository.MovieRepositoryImpl
 import com.leonardoamurca.lmdb.network.AuthInterceptor
 import com.leonardoamurca.lmdb.network.api.MovieApi
+import com.leonardoamurca.lmdb.ui.home.HomeViewModel
 import com.leonardoamurca.lmdb.ui.trending.TrendingMoviesViewModel
 import com.leonardoamurca.lmdb.ui.movie.MovieViewModel
 import com.leonardoamurca.lmdb.ui.titlebar.TitleBarViewModel
@@ -42,4 +43,5 @@ val appModule = module {
         )
     }
     viewModel { TitleBarViewModel(get()) }
+    viewModel { HomeViewModel(get()) }
 }
