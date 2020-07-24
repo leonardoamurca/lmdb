@@ -21,6 +21,16 @@
         android:layout_height="match_parent"
         tools:context="com.leonardoamurca.lmdb.ui.trending.TrendingMoviesActivity">
 
+        <FrameLayout
+            android:id="@+id/rootLayoutTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/movieListRecyclerView"
+            />
+
         <ProgressBar
             android:id="@+id/loading"
             android:layout_width="match_parent"
@@ -34,7 +44,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieListRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/rootLayoutTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:adapter="@{adapter}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
