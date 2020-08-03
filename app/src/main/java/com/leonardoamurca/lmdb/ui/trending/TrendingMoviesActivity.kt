@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.leonardoamurca.lmdb.R
 import com.leonardoamurca.lmdb.databinding.ActivityTrendingMoviesBinding
-import com.leonardoamurca.lmdb.ui.titlebar.TitleBarFragment
 import org.koin.android.ext.android.inject
 
 class TrendingMoviesActivity : AppCompatActivity() {
@@ -29,13 +28,6 @@ class TrendingMoviesActivity : AppCompatActivity() {
             viewmodel = this@TrendingMoviesActivity.viewModel
             lifecycleOwner = this@TrendingMoviesActivity
         }
-
-        val titleBarFragment = TitleBarFragment.newInstance("Trending")
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.rootLayoutTitle, titleBarFragment, "titleBar")
-            .addToBackStack(null)
-            .commit()
 
         initializeList()
         setupObservers()

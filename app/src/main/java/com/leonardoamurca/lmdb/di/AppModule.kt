@@ -8,7 +8,6 @@ import com.leonardoamurca.lmdb.network.AuthInterceptor
 import com.leonardoamurca.lmdb.network.api.MovieApi
 import com.leonardoamurca.lmdb.ui.trending.TrendingMoviesViewModel
 import com.leonardoamurca.lmdb.ui.movie.MovieViewModel
-import com.leonardoamurca.lmdb.ui.titlebar.TitleBarViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -41,5 +40,4 @@ val appModule = module {
             get()
         )
     }
-    viewModel { TitleBarViewModel(get()) }
 }
