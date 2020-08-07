@@ -5,11 +5,13 @@ import androidx.lifecycle.*
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.leonardoamurca.lmdb.model.Movie
+import com.leonardoamurca.lmdb.navigation.TrendingMoviesCoordinator
 import com.leonardoamurca.lmdb.network.api.MovieApi
 
 class TrendingMoviesViewModel(
     app: Application,
-    movieApi: MovieApi
+    movieApi: MovieApi,
+    private val coordinator: TrendingMoviesCoordinator
 ) : AndroidViewModel(app) {
 
     var movies: LiveData<PagedList<Movie>>
@@ -33,4 +35,8 @@ class TrendingMoviesViewModel(
         trendingMoviesDataSourceFactory.dataSource,
         TrendingMoviesDataSource::loadingState
     )
+
+    fun showSelectedMovie(movie: Movie) {
+        coordinator.showSelectedMovieDetails(movie)
+    }
 }

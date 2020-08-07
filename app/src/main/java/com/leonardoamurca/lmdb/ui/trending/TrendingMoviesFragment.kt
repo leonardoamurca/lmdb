@@ -1,49 +1,62 @@
 package com.leonardoamurca.lmdb.ui.trending
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.leonardoamurca.lmdb.R
-import com.leonardoamurca.lmdb.databinding.ActivityTrendingMoviesBinding
+import com.leonardoamurca.lmdb.databinding.FragmentTrendingMoviesBinding
 import org.koin.android.ext.android.inject
 
-class TrendingMoviesActivity : AppCompatActivity() {
+class TrendingMoviesFragment : Fragment() {
 
-    private lateinit var databinding: ActivityTrendingMoviesBinding
+    private lateinit var databinding: FragmentTrendingMoviesBinding
 
     private val viewModel: TrendingMoviesViewModel by inject()
 
-    private val movieListAdapter = TrendingMoviesAdapter()
+    private lateinit var movieListAdapter: TrendingMoviesAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        databinding = DataBindingUtil.setContentView<ActivityTrendingMoviesBinding>(
-            this,
-            R.layout.activity_trending_movies
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        databinding = DataBindingUtil.inflate<FragmentTrendingMoviesBinding>(
+            inflater,
+            R.layout.fragment_trending_movies,
+            container,
+            false
         ).apply {
-            viewmodel = this@TrendingMoviesActivity.viewModel
-            lifecycleOwner = this@TrendingMoviesActivity
+            viewmodel = this@TrendingMoviesFragment.viewModel
+            lifecycleOwner = this@TrendingMoviesFragment
         }
+
+        return databinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initializeList()
         setupObservers()
     }
 
     private fun setupObservers() {
-        viewModel.movies.observe(this, Observer {
+        viewModel.movies.observe(viewLifecycleOwner, Observer {
             it.let(movieListAdapter::submitList)
         })
     }
 
     private fun initializeList() {
+        movieListAdapter = TrendingMoviesAdapter(viewModel::showSelectedMovie)
         databinding.adapter = movieListAdapter
         databinding.movieListRecyclerView.apply {
             layoutManager = GridLayoutManager(
-                this@TrendingMoviesActivity,
+                activity,
                 SPAN_COUNT,
                 GridLayoutManager.VERTICAL,
                 false
