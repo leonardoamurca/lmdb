@@ -23,7 +23,6 @@ class MovieDetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
         databinding = DataBindingUtil.inflate<ActivityMovieBinding>(
             inflater,
             R.layout.activity_movie,
@@ -34,8 +33,9 @@ class MovieDetailsFragment : Fragment() {
             lifecycleOwner = this@MovieDetailsFragment
         }
 
-        val movie = arguments?.getParcelable<Movie>(MOVIE_KEY)
-        detailsViewModel.init(movie)
+        arguments?.getParcelable<Movie>(MOVIE_KEY).let { movie ->
+            detailsViewModel.init(movie)
+        }
 
         return databinding.root
     }
