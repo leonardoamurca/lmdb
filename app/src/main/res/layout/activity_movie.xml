@@ -8,13 +8,13 @@
 
         <variable
             name="viewmodel"
-            type="com.leonardoamurca.lmdb.ui.movie.MovieViewModel" />
+            type="com.leonardoamurca.lmdb.ui.moviedetails.MovieDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.movie.MovieActivity">
+        tools:context=".ui.moviedetails.MovieDetailsFragment">
 
         <ImageView
             android:id="@+id/posterImage"

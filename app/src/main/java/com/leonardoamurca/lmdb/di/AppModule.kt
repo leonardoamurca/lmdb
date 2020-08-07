@@ -1,13 +1,19 @@
 package com.leonardoamurca.lmdb.di
 
 import com.leonardoamurca.lmdb.BuildConfig
+import com.leonardoamurca.lmdb.MainViewModel
+import com.leonardoamurca.lmdb.navigation.Navigator
 import com.leonardoamurca.lmdb.db.AppDatabase
 import com.leonardoamurca.lmdb.db.repository.MovieRepository
 import com.leonardoamurca.lmdb.db.repository.MovieRepositoryImpl
+import com.leonardoamurca.lmdb.navigation.HomeCoordinator
+import com.leonardoamurca.lmdb.navigation.RootCoordinator
+import com.leonardoamurca.lmdb.navigation.TrendingMoviesCoordinator
 import com.leonardoamurca.lmdb.network.AuthInterceptor
 import com.leonardoamurca.lmdb.network.api.MovieApi
+import com.leonardoamurca.lmdb.ui.home.HomeViewModel
 import com.leonardoamurca.lmdb.ui.trending.TrendingMoviesViewModel
-import com.leonardoamurca.lmdb.ui.movie.MovieViewModel
+import com.leonardoamurca.lmdb.ui.moviedetails.MovieDetailsViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -33,11 +39,18 @@ val appModule = module {
             .build()
     }
     single { get<Retrofit>().create(MovieApi::class.java) }
-    viewModel { MovieViewModel(get()) }
+    single { Navigator() }
+    single { RootCoordinator(get()) }
+    single { HomeCoordinator(get()) }
+    single { TrendingMoviesCoordinator(get()) }
+    viewModel { MovieDetailsViewModel(get()) }
     viewModel {
         TrendingMoviesViewModel(
+            get(),
             get(),
             get()
         )
     }
+    viewModel { HomeViewModel(get(), get()) }
+    viewModel { MainViewModel(get(), get()) }
 }
