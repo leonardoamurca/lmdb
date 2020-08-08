@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomToolbar">
+        <attr name="toolbarTitle" format="string" />
+        <attr name="toolbarShowBackButton" format="boolean" />
+        <attr name="toolbarShowNextButton" format="boolean" />
+        <attr name="toolbarShowDivider" format="boolean" />
+    </declare-styleable>
+</resources>
