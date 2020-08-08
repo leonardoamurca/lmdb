@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#efefef"
+    android:minHeight="?android:attr/actionBarSize">
+
+    <TextView
+        android:id="@+id/backButton"
+        style="@style/ToolbarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="20dp"
+        android:drawableStart="@drawable/ic_arrow_back"
+        android:drawableTint="@color/cardview_dark_background"
+        app:layout_constraintEnd_toStartOf="@id/toolbarBarrierLeft"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nextButton"
+        style="@style/ToolbarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_arrow_forward"
+        android:drawableTint="@color/cardview_dark_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@id/toolbarBarrierRight"
+        app:layout_constraintTop_toTopOf="@id/backButton"
+        tools:text="Settings" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/toolbarBarrierLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="backButton, title" />
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/toolbarBarrierRight"
+        app:layout_constraintStart_toEndOf="@id/toolbarBarrierLeft"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Trending"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/toolbarBarrierRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="nextButton, title" />
+
+    <View
+        android:id="@+id/divider"
+        style="@style/Divider"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="invisible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

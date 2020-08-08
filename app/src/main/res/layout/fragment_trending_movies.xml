@@ -31,11 +31,25 @@
             app:layout_constraintTop_toTopOf="parent"
             app:present="@{viewmodel.showLoading()}" />
 
+        <com.leonardoamurca.lmdb.ui.CustomToolbar
+            android:id="@+id/trendingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/movieListRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:toolbarTitle="Trending" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieListRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:adapter="@{adapter}" />
+            android:layout_height="0dp"
+            app:adapter="@{adapter}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/trendingToolbar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -33,3 +33,7 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
         this.adapter = adapter
     }
 }
+
+@BindingAdapter("visible")
+fun View.setVisible(status: Boolean) =
+    if (status) this.visibility = View.VISIBLE else this.visibility = View.INVISIBLE
