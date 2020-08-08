@@ -11,4 +11,8 @@ class TrendingMoviesCoordinator(private val navigator: Navigator) {
     fun showSelectedMovieDetails(movie: Movie) {
         navigator.showMovieDetails(movie)
     }
+
+    fun closeTrendingMovies() {
+        navigator.closeTrendingMovies()
+    }
 }

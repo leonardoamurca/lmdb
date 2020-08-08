@@ -39,4 +39,8 @@ class TrendingMoviesViewModel(
     fun showSelectedMovie(movie: Movie) {
         coordinator.showSelectedMovieDetails(movie)
     }
+
+    fun closeTrendingMovies() {
+        coordinator.closeTrendingMovies()
+    }
 }

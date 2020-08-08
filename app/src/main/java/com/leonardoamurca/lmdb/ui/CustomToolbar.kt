@@ -46,6 +46,12 @@ class CustomToolbar @JvmOverloads constructor(
             field = value
         }
 
+    var onBackClick: OnClickListener? = null
+        set(value) {
+            backButton.setOnClickListener(value)
+            field = value
+        }
+
     private fun setTitleText(newTitle: String) {
         title.text = newTitle
         showTitle = true
