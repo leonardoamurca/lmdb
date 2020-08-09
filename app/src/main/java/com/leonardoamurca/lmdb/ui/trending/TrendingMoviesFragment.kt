@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.leonardoamurca.lmdb.R
 import com.leonardoamurca.lmdb.databinding.FragmentTrendingMoviesBinding
+import com.leonardoamurca.lmdb.ui.GridSpacingItemDecoration
+import com.leonardoamurca.lmdb.ui.MoviesAdapter
 import org.koin.android.ext.android.inject
 
 class TrendingMoviesFragment : Fragment() {
@@ -18,7 +20,7 @@ class TrendingMoviesFragment : Fragment() {
 
     private val viewModel: TrendingMoviesViewModel by inject()
 
-    private lateinit var movieListAdapter: TrendingMoviesAdapter
+    private lateinit var movieListAdapter: MoviesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +54,8 @@ class TrendingMoviesFragment : Fragment() {
     }
 
     private fun initializeList() {
-        movieListAdapter = TrendingMoviesAdapter(viewModel::showSelectedMovie)
+        movieListAdapter =
+            MoviesAdapter(viewModel::showSelectedMovie)
         databinding.adapter = movieListAdapter
         databinding.movieListRecyclerView.apply {
             layoutManager = GridLayoutManager(

@@ -7,6 +7,8 @@ import androidx.paging.PagedList
 import com.leonardoamurca.lmdb.model.Movie
 import com.leonardoamurca.lmdb.navigation.TrendingMoviesCoordinator
 import com.leonardoamurca.lmdb.network.api.MovieApi
+import com.leonardoamurca.lmdb.ui.MoviesDataSource
+import com.leonardoamurca.lmdb.ui.MoviesDataSourceFactory
 
 class TrendingMoviesViewModel(
     app: Application,
@@ -16,10 +18,12 @@ class TrendingMoviesViewModel(
 
     var movies: LiveData<PagedList<Movie>>
 
-    private val trendingMoviesDataSourceFactory: TrendingMoviesDataSourceFactory =
-        TrendingMoviesDataSourceFactory(
-            viewModelScope,
-            movieApi
+    private val moviesDataSourceFactory: MoviesDataSourceFactory =
+        MoviesDataSourceFactory(
+            TrendingMoviesDataSource(
+                viewModelScope,
+                movieApi
+            )
         )
 
     init {
@@ -28,12 +32,12 @@ class TrendingMoviesViewModel(
             .setEnablePlaceholders(false)
             .build()
 
-        movies = LivePagedListBuilder<Int, Movie>(trendingMoviesDataSourceFactory, config).build()
+        movies = LivePagedListBuilder<Int, Movie>(moviesDataSourceFactory, config).build()
     }
 
     fun showLoading(): LiveData<Boolean> = Transformations.switchMap(
-        trendingMoviesDataSourceFactory.dataSource,
-        TrendingMoviesDataSource::loadingState
+        moviesDataSourceFactory.dataSource,
+        MoviesDataSource::loadingState
     )
 
     fun showSelectedMovie(movie: Movie) {

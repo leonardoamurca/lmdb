@@ -1,4 +1,4 @@
-package com.leonardoamurca.lmdb.ui.trending
+package com.leonardoamurca.lmdb.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.leonardoamurca.lmdb.databinding.TrendingMovieItemBinding
 import com.leonardoamurca.lmdb.model.Movie
 
-class TrendingMoviesAdapter(private val click: (Movie) -> Unit) :
-    PagedListAdapter<Movie, TrendingMoviesAdapter.ViewHolder>(Companion) {
+class MoviesAdapter(private val click: (Movie) -> Unit) :
+    PagedListAdapter<Movie, MoviesAdapter.ViewHolder>(
+        Companion
+    ) {
 
     class ViewHolder(val binding: TrendingMovieItemBinding, val click: (Movie) -> Unit) :
         RecyclerView.ViewHolder(binding.root),
@@ -29,7 +31,10 @@ class TrendingMoviesAdapter(private val click: (Movie) -> Unit) :
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = TrendingMovieItemBinding.inflate(layoutInflater)
 
-        return ViewHolder(binding, click)
+        return ViewHolder(
+            binding,
+            click
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

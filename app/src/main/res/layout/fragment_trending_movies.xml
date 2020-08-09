@@ -9,7 +9,7 @@
 
         <variable
             name="adapter"
-            type="com.leonardoamurca.lmdb.ui.trending.TrendingMoviesAdapter" />
+            type="com.leonardoamurca.lmdb.ui.MoviesAdapter" />
 
         <variable
             name="viewmodel"
