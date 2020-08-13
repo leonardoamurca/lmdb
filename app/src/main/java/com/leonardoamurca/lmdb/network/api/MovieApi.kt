@@ -17,4 +17,13 @@ interface MovieApi {
         @Path("period") period: String,
         @Query("page") pageNumber: Int
     ): Response<NetworkListResponse>
+
+    @GET("discover/movie")
+    suspend fun getPopularMovies(
+        @Query("language") language: String,
+        @Query("sort_by") sortBy: String,
+        @Query("include_adult") includeAdult: Boolean,
+        @Query("include_video") includeVideo: Boolean,
+        @Query("page") pageNumber: Int
+    ): Response<NetworkListResponse>
 }
