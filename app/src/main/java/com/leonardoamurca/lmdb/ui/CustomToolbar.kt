@@ -5,7 +5,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
 import com.leonardoamurca.lmdb.R
 import com.leonardoamurca.lmdb.utils.setPresent

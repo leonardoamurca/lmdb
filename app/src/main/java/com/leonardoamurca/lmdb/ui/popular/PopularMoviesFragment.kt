@@ -1,4 +1,4 @@
-package com.leonardoamurca.lmdb.ui.trending
+package com.leonardoamurca.lmdb.ui.popular
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,16 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.leonardoamurca.lmdb.R
-import com.leonardoamurca.lmdb.databinding.FragmentTrendingMoviesBinding
+import com.leonardoamurca.lmdb.databinding.FragmentPopularMoviesBinding
 import com.leonardoamurca.lmdb.ui.GridSpacingItemDecoration
 import com.leonardoamurca.lmdb.ui.MoviesAdapter
 import org.koin.android.ext.android.inject
 
-class TrendingMoviesFragment : Fragment() {
+class PopularMoviesFragment : Fragment() {
 
-    private lateinit var databinding: FragmentTrendingMoviesBinding
+    private lateinit var databinding: FragmentPopularMoviesBinding
 
-    private val viewModel: TrendingMoviesViewModel by inject()
+    private val viewModel: PopularMoviesViewModel by inject()
 
     private lateinit var movieListAdapter: MoviesAdapter
 
@@ -27,14 +27,14 @@ class TrendingMoviesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        databinding = DataBindingUtil.inflate<FragmentTrendingMoviesBinding>(
+        databinding = DataBindingUtil.inflate<FragmentPopularMoviesBinding>(
             inflater,
-            R.layout.fragment_trending_movies,
+            R.layout.fragment_popular_movies,
             container,
             false
         ).apply {
-            viewmodel = this@TrendingMoviesFragment.viewModel
-            lifecycleOwner = this@TrendingMoviesFragment
+            viewmodel = this@PopularMoviesFragment.viewModel
+            lifecycleOwner = this@PopularMoviesFragment
         }
 
         return databinding.root

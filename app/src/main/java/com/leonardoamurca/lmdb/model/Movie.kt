@@ -15,7 +15,7 @@ data class Movie(
     @Json(name = "overview")
     val overview: String = "",
     @Json(name = "poster_path")
-    val posterPath: String = "",
+    val posterPath: String? = null,
     @Json(name = "vote_average")
     val voteAverage: Float = 0F
 ) : Parcelable

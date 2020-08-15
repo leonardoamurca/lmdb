@@ -13,13 +13,13 @@
 
         <variable
             name="viewmodel"
-            type="com.leonardoamurca.lmdb.ui.trending.TrendingMoviesViewModel" />
+            type="com.leonardoamurca.lmdb.ui.popular.PopularMoviesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.leonardoamurca.lmdb.ui.trending.TrendingMoviesFragment">
+        tools:context="com.leonardoamurca.lmdb.ui.popular.PopularMoviesFragment">
 
         <ProgressBar
             android:id="@+id/loading"
@@ -32,15 +32,15 @@
             app:present="@{viewmodel.showLoading()}" />
 
         <com.leonardoamurca.lmdb.ui.CustomToolbar
-            android:id="@+id/trendingToolbar"
+            android:id="@+id/popularToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/movieListRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:onBackClick="@{() -> viewmodel.closeTrendingMovies()}"
-            app:toolbarTitle="Trending" />
+            app:onBackClick="@{() -> viewmodel.closePopularMovies()}"
+            app:toolbarTitle="Popular" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieListRecyclerView"
@@ -50,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/trendingToolbar" />
+            app:layout_constraintTop_toBottomOf="@id/popularToolbar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

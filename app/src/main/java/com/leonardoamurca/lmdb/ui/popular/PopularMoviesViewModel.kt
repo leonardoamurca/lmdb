@@ -1,26 +1,29 @@
-package com.leonardoamurca.lmdb.ui.trending
+package com.leonardoamurca.lmdb.ui.popular
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.leonardoamurca.lmdb.model.Movie
-import com.leonardoamurca.lmdb.navigation.TrendingMoviesCoordinator
+import com.leonardoamurca.lmdb.navigation.PopularMoviesCoordinator
 import com.leonardoamurca.lmdb.network.api.MovieApi
 import com.leonardoamurca.lmdb.ui.MoviesDataSource
 import com.leonardoamurca.lmdb.ui.MoviesDataSourceFactory
 
-class TrendingMoviesViewModel(
+class PopularMoviesViewModel(
     app: Application,
     movieApi: MovieApi,
-    private val coordinator: TrendingMoviesCoordinator
+    private val coordinator: PopularMoviesCoordinator
 ) : AndroidViewModel(app) {
 
     var movies: LiveData<PagedList<Movie>>
 
     private val moviesDataSourceFactory: MoviesDataSourceFactory =
         MoviesDataSourceFactory(
-            TrendingMoviesDataSource(
+            PopularMoviesDataSource(
                 viewModelScope,
                 movieApi
             )
@@ -44,7 +47,7 @@ class TrendingMoviesViewModel(
         coordinator.showSelectedMovieDetails(movie)
     }
 
-    fun closeTrendingMovies() {
-        coordinator.closeTrendingMovies()
+    fun closePopularMovies() {
+        coordinator.closePopularMovies()
     }
 }

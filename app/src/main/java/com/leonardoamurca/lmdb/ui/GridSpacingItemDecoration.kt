@@ -1,4 +1,4 @@
-package com.leonardoamurca.lmdb.ui.trending
+package com.leonardoamurca.lmdb.ui
 
 import android.graphics.Rect
 import android.view.View
