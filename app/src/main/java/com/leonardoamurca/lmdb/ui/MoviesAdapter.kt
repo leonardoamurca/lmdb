@@ -52,8 +52,6 @@ class MoviesAdapter(private val click: (Movie) -> Unit) :
         override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem.id == newItem.id
         }
-
-        private const val MOVIE_KEY = "MOVIE"
     }
 }
 
