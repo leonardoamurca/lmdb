@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.leonardoamurca.lmdb.databinding.TrendingMovieItemBinding
+import com.leonardoamurca.lmdb.databinding.MovieItemBinding
 import com.leonardoamurca.lmdb.model.Movie
 
 class MoviesAdapter(private val click: (Movie) -> Unit) :
@@ -14,7 +14,7 @@ class MoviesAdapter(private val click: (Movie) -> Unit) :
         Companion
     ) {
 
-    class ViewHolder(val binding: TrendingMovieItemBinding, val click: (Movie) -> Unit) :
+    class ViewHolder(val binding: MovieItemBinding, val click: (Movie) -> Unit) :
         RecyclerView.ViewHolder(binding.root),
         View.OnClickListener {
 
@@ -29,7 +29,7 @@ class MoviesAdapter(private val click: (Movie) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = TrendingMovieItemBinding.inflate(layoutInflater)
+        val binding = MovieItemBinding.inflate(layoutInflater)
 
         return ViewHolder(
             binding,

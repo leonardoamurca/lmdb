@@ -10,15 +10,17 @@ import com.leonardoamurca.lmdb.BuildConfig
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, path: String?) {
+
+    // TODO: Render image fallback from local assets
     val imgUrl = path?.let { "${BuildConfig.ASSETS_BASE_URL}$it" }
+        ?: "https://i.postimg.cc/287kwBgP/image-not-found.jpg"
 
-    imgUrl?.let {
-        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+    val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
 
-        Glide.with(imgView.context)
-            .load(imgUri)
-            .into(imgView)
-    }
+    Glide.with(imgView.context)
+        .load(imgUri)
+        .into(imgView)
+
 }
 
 @BindingAdapter("present")
