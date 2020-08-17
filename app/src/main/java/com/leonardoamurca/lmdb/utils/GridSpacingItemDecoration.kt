@@ -1,4 +1,4 @@
-package com.leonardoamurca.lmdb.ui
+package com.leonardoamurca.lmdb.utils
 
 import android.graphics.Rect
 import android.view.View
@@ -8,8 +8,7 @@ class GridSpacingItemDecoration(
     private val spanCount: Int,
     private val spacing: Int,
     private val includeEdge: Boolean
-) :
-    RecyclerView.ItemDecoration() {
+) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,

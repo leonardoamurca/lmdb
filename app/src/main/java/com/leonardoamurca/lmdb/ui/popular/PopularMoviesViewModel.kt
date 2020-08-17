@@ -10,8 +10,9 @@ import androidx.paging.PagedList
 import com.leonardoamurca.lmdb.model.Movie
 import com.leonardoamurca.lmdb.navigation.PopularMoviesCoordinator
 import com.leonardoamurca.lmdb.network.api.MovieApi
-import com.leonardoamurca.lmdb.ui.MoviesDataSource
-import com.leonardoamurca.lmdb.ui.MoviesDataSourceFactory
+import com.leonardoamurca.lmdb.ui.datasource.MoviesDataSource
+import com.leonardoamurca.lmdb.ui.datasource.MoviesDataSourceFactory
+import com.leonardoamurca.lmdb.ui.datasource.PopularMoviesDataSource
 
 class PopularMoviesViewModel(
     app: Application,

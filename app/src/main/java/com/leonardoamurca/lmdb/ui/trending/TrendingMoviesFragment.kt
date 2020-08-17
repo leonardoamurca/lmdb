@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.leonardoamurca.lmdb.R
 import com.leonardoamurca.lmdb.databinding.FragmentTrendingMoviesBinding
-import com.leonardoamurca.lmdb.ui.GridSpacingItemDecoration
-import com.leonardoamurca.lmdb.ui.MoviesAdapter
+import com.leonardoamurca.lmdb.utils.GridSpacingItemDecoration
+import com.leonardoamurca.lmdb.ui.adapter.MoviesAdapter
 import org.koin.android.ext.android.inject
 
 class TrendingMoviesFragment : Fragment() {

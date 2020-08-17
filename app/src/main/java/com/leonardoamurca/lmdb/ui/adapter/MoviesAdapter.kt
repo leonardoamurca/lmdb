@@ -1,4 +1,4 @@
-package com.leonardoamurca.lmdb.ui
+package com.leonardoamurca.lmdb.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.leonardoamurca.lmdb.databinding.MovieItemBinding
 import com.leonardoamurca.lmdb.model.Movie
 
-class MoviesAdapter(private val click: (Movie) -> Unit) :
+class MoviesAdapter(private val onClick: (Movie) -> Unit) :
     PagedListAdapter<Movie, MoviesAdapter.ViewHolder>(
-        Companion
+        Callback
     ) {
 
-    class ViewHolder(val binding: MovieItemBinding, val click: (Movie) -> Unit) :
+    class ViewHolder(val binding: MovieItemBinding, val onClick: (Movie) -> Unit) :
         RecyclerView.ViewHolder(binding.root),
         View.OnClickListener {
 
@@ -23,7 +23,7 @@ class MoviesAdapter(private val click: (Movie) -> Unit) :
         }
 
         override fun onClick(v: View?) {
-            click(binding.movie!!)
+            onClick(binding.movie!!)
         }
     }
 
@@ -33,7 +33,7 @@ class MoviesAdapter(private val click: (Movie) -> Unit) :
 
         return ViewHolder(
             binding,
-            click
+            onClick
         )
     }
 
@@ -44,7 +44,7 @@ class MoviesAdapter(private val click: (Movie) -> Unit) :
         holder.binding.executePendingBindings()
     }
 
-    companion object : DiffUtil.ItemCallback<Movie>() {
+    companion object Callback : DiffUtil.ItemCallback<Movie>() {
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem == newItem
         }

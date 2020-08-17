@@ -9,7 +9,7 @@
 
         <variable
             name="adapter"
-            type="com.leonardoamurca.lmdb.ui.MoviesAdapter" />
+            type="com.leonardoamurca.lmdb.ui.adapter.MoviesAdapter" />
 
         <variable
             name="viewmodel"

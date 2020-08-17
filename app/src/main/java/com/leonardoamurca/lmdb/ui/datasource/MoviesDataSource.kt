@@ -1,4 +1,4 @@
-package com.leonardoamurca.lmdb.ui
+package com.leonardoamurca.lmdb.ui.datasource
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
