@@ -35,20 +35,15 @@ class Navigator {
             .commit()
     }
 
-    fun showMovieDetails(movie: Movie) {
+    fun showMovieDetails(movie: Movie, from: String) {
         activity!!.supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragmentContainer, MovieDetailsFragment.newInstance(movie))
-            .addToBackStack("TrendingMovies")
+            .addToBackStack(from)
             .commit()
     }
 
-    fun closeTrendingMovies() {
-        activity!!.supportFragmentManager
-            .popBackStack()
-    }
-
-    fun closePopularMovies() {
+    fun goBack() {
         activity!!.supportFragmentManager
             .popBackStack()
     }

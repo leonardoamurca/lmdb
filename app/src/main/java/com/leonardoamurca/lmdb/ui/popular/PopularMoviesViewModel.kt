@@ -49,6 +49,6 @@ class PopularMoviesViewModel(
     }
 
     fun closePopularMovies() {
-        coordinator.closePopularMovies()
+        coordinator.goBack()
     }
 }

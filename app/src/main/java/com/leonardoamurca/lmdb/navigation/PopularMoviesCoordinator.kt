@@ -9,10 +9,10 @@ class PopularMoviesCoordinator(private val navigator: Navigator) {
     }
 
     fun showSelectedMovieDetails(movie: Movie) {
-        navigator.showMovieDetails(movie)
+        navigator.showMovieDetails(movie, "PopularMovies")
     }
 
-    fun closePopularMovies() {
-        navigator.closePopularMovies()
+    fun goBack() {
+        navigator.goBack()
     }
 }
