@@ -39,9 +39,10 @@ val appModule = module {
     single { get<Retrofit>().create(MovieApi::class.java) }
     single { Navigator() }
     single { HomeCoordinator(get()) }
-    single { TrendingMoviesCoordinator(get()) }
+    single { TrendingMoviesCoordinator(get(), get()) }
     single { PopularMoviesCoordinator(get()) }
-    viewModel { MovieDetailsViewModel(get()) }
+    single { MovieDetailsCoordinador(get()) }
+    viewModel { MovieDetailsViewModel(get(), get()) }
     viewModel {
         TrendingMoviesViewModel(
             get(),

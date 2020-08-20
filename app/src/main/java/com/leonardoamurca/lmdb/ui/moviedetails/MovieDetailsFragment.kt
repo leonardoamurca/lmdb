@@ -8,7 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.leonardoamurca.lmdb.R
-import com.leonardoamurca.lmdb.databinding.ActivityMovieBinding
+import com.leonardoamurca.lmdb.databinding.FragmentMoviedetailsBinding
 import com.leonardoamurca.lmdb.model.Movie
 import org.koin.android.ext.android.inject
 
@@ -16,16 +16,16 @@ class MovieDetailsFragment : Fragment() {
 
     private val detailsViewModel: MovieDetailsViewModel by inject()
 
-    private lateinit var databinding: ActivityMovieBinding
+    private lateinit var databinding: FragmentMoviedetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        databinding = DataBindingUtil.inflate<ActivityMovieBinding>(
+        databinding = DataBindingUtil.inflate<FragmentMoviedetailsBinding>(
             inflater,
-            R.layout.activity_movie,
+            R.layout.fragment_moviedetails,
             container,
             false
         ).apply {

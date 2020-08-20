@@ -16,6 +16,15 @@
         android:layout_height="match_parent"
         tools:context=".ui.moviedetails.MovieDetailsFragment">
 
+        <com.leonardoamurca.lmdb.ui.CustomToolbar
+            android:id="@+id/movieDetailsToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:onBackClick="@{() -> viewmodel.closeMovieDetails()}" />
+
         <ImageView
             android:id="@+id/posterImage"
             android:layout_width="120dp"
@@ -24,7 +33,7 @@
             app:layout_constraintBottom_toTopOf="@id/guideline"
             app:layout_constraintEnd_toStartOf="@id/title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieDetailsToolbar"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -39,7 +48,7 @@
             app:layout_constraintBottom_toTopOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/posterImage"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieDetailsToolbar"
             tools:text="Midsommar" />
 
         <TextView
@@ -100,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3" />
+            app:layout_constraintGuide_percent="0.4" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

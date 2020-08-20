@@ -5,9 +5,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.leonardoamurca.lmdb.model.Movie
+import com.leonardoamurca.lmdb.navigation.MovieDetailsCoordinador
 
 class MovieDetailsViewModel(
-    app: Application
+    app: Application,
+    private val coordinador: MovieDetailsCoordinador
 ) : AndroidViewModel(app) {
 
     private val _movie = MutableLiveData<Movie>()
@@ -15,5 +17,9 @@ class MovieDetailsViewModel(
 
     fun init(movie: Movie?) {
         _movie.value = movie
+    }
+
+    fun closeMovieDetails() {
+        coordinador.goBack()
     }
 }
