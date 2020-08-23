@@ -4,11 +4,15 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.leonardoamurca.lmdb.model.Collection
+import com.leonardoamurca.lmdb.model.CollectionTypes
 import com.leonardoamurca.lmdb.model.Movie
 import com.leonardoamurca.lmdb.navigation.HomeCoordinator
 import com.leonardoamurca.lmdb.navigation.PopularMoviesCoordinator
 import com.leonardoamurca.lmdb.navigation.TrendingMoviesCoordinator
+import com.leonardoamurca.lmdb.network.NetworkState
+import com.leonardoamurca.lmdb.network.NetworkState.Success
 import com.leonardoamurca.lmdb.network.api.MovieApi
+import com.leonardoamurca.lmdb.utils.handleListStateResponse
 
 class HomeViewModel(
     private val trendingCoordinator: TrendingMoviesCoordinator,
@@ -26,16 +30,26 @@ class HomeViewModel(
             sortBy = "popularity.ascdesc",
             includeAdult = false,
             includeVideo = false,
-            pageNumber = 1
-        )
+            pageNumber = FIRST_PAGE
+        ).handleListStateResponse()
 
-        val trendingMovies = movieApi.getTrendingMoviesOf("day", 1)
+        val trendingMovies = movieApi.getTrendingMoviesOf(
+            period = "day",
+            pageNumber = FIRST_PAGE
+        ).handleListStateResponse()
 
-        if (popularMovies.isSuccessful && trendingMovies.isSuccessful) {
+        setupCollections(trendingMovies, popularMovies)
+    }
+
+    private fun setupCollections(
+        trendingMovies: NetworkState<List<Movie>>,
+        popularMovies: NetworkState<List<Movie>>
+    ) {
+        if (trendingMovies is Success && popularMovies is Success) {
             collections.value =
                 listOf(
-                    Collection("Trending", trendingMovies.body()?.results),
-                    Collection("Popular", popularMovies.body()?.results)
+                    Collection(CollectionTypes.TRENDING.value, trendingMovies.data),
+                    Collection(CollectionTypes.POPULAR.name, popularMovies.data)
                 )
         }
     }
@@ -56,5 +70,9 @@ class HomeViewModel(
 
     fun showSelectedMovie(movie: Movie) {
         homeCoordinator.showSelectedMovieDetails(movie)
+    }
+
+    companion object {
+        private const val FIRST_PAGE = 1
     }
 }
