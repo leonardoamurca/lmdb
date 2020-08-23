@@ -47,15 +47,8 @@ class TrendingMoviesFragment : Fragment() {
         setupObservers()
     }
 
-    private fun setupObservers() {
-        viewModel.movies.observe(viewLifecycleOwner, Observer {
-            it.let(movieListAdapter::submitList)
-        })
-    }
-
     private fun initializeList() {
-        movieListAdapter =
-            MoviesAdapter(viewModel::showSelectedMovie)
+        movieListAdapter = MoviesAdapter(viewModel::showSelectedMovie)
         databinding.adapter = movieListAdapter
         databinding.movieListRecyclerView.apply {
             layoutManager = GridLayoutManager(
@@ -72,6 +65,12 @@ class TrendingMoviesFragment : Fragment() {
                 )
             )
         }
+    }
+
+    private fun setupObservers() {
+        viewModel.movies.observe(viewLifecycleOwner, Observer {
+            it.let(movieListAdapter::submitList)
+        })
     }
 
     companion object {
