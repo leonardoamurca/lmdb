@@ -1,7 +1,6 @@
 package com.leonardoamurca.lmdb.navigation
 
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import com.leonardoamurca.lmdb.R
 import com.leonardoamurca.lmdb.model.Movie
 import com.leonardoamurca.lmdb.ui.home.HomeFragment

@@ -11,4 +11,8 @@ class HomeCoordinator(private val navigator: Navigator) {
     fun showSelectedMovieDetails(movie: Movie) {
         navigator.showMovieDetails(movie, "Home")
     }
+
+    fun showFavorites() {
+        navigator.showTrendingMoviesScreen()
+    }
 }

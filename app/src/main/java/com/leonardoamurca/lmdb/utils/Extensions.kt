@@ -1,5 +1,9 @@
 package com.leonardoamurca.lmdb.utils
 
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.leonardoamurca.lmdb.model.Movie
 import com.leonardoamurca.lmdb.model.NetworkListResponse
 import com.leonardoamurca.lmdb.network.NetworkState
@@ -33,4 +37,13 @@ fun Response<NetworkListResponse>.handleListStateResponse(): NetworkState<List<M
             else -> Error(this.message())
         }
     }
+}
+
+fun <T> MutableLiveData<T>.triggerEvent(value: T?) {
+    this.value = value
+}
+
+fun <T> LiveData<T>.subscribe(owner: LifecycleOwner, body: T.() -> Unit) {
+    this.removeObservers(owner)
+    observe(owner, Observer { body(it) })
 }
