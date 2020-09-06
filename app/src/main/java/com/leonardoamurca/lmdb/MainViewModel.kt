@@ -18,7 +18,7 @@ class MainViewModel(
     val selectedPosition: LiveData<HomeTabBarView.Items> get() = _selectedPosition
 
     fun init(item: HomeTabBarView.Items) {
-        _selectedPosition.value = item
+        _selectedPosition.triggerEvent(item)
         coordinator.start()
     }
 

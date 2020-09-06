@@ -17,9 +17,8 @@ import kotlinx.android.synthetic.main.custom_toolbar.view.divider
 @SuppressLint("Recycle")
 class CustomToolbar @JvmOverloads constructor(
     context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+    attrs: AttributeSet? = null
+) : FrameLayout(context, attrs) {
 
     var showBackButton: Boolean = true
         set(value) {

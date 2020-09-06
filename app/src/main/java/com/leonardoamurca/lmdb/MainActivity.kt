@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
 
         val openedTab = getHomeTabItem()
         viewModel.init(openedTab)
-        homeTabBar.selectedItem = openedTab
 
+        selectTabBar(openedTab)
         subscribeEvents()
     }
 
@@ -49,14 +49,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getHomeTabItem(): HomeTabBarView.Items {
         val fragment = supportFragmentManager.primaryNavigationFragment
-
-        return getTabFrom(fragment)
-    }
-
-    private fun getTabFrom(fragment: Fragment?): HomeTabBarView.Items {
-        if (fragment == null) {
-            return HomeTabBarView.Items.HOME
-        }
+            ?: return HomeTabBarView.Items.HOME
 
         return when (fragment) {
             is HomeFragment -> HomeTabBarView.Items.HOME
@@ -65,6 +58,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun selectTabBar(openedTab: HomeTabBarView.Items) {
+        homeTabBar.selectedItem = openedTab
+    }
 
     override fun onDestroy() {
         super.onDestroy()
