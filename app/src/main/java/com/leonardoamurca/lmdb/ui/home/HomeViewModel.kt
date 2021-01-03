@@ -49,7 +49,7 @@ class HomeViewModel(
             collections.value =
                 listOf(
                     Collection(CollectionTypes.TRENDING.value, trendingMovies.data),
-                    Collection(CollectionTypes.POPULAR.name, popularMovies.data)
+                    Collection(CollectionTypes.POPULAR.value, popularMovies.data)
                 )
         }
     }

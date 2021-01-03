@@ -33,6 +33,18 @@
             card_view:layout_constraintTop_toTopOf="parent"
             tools:text="Trending" />
 
+        <TextView
+            android:id="@+id/nextButton"
+            style="@style/ToolbarButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:drawableEnd="@drawable/ic_arrow_forward"
+            android:drawableTint="@color/cardview_dark_background"
+            android:padding="20dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeMovieRecyclerView"
             android:layout_width="match_parent"
